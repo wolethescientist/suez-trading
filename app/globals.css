@@ -1,26 +1,185 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   SUEZ TRADING — design tokens
+   Shares the Suez group system used by Suez Electric and Suez Gas: a warm
+   bone/ink palette, Zodiak for display, Switzer for text and labels, IBM Plex
+   Mono for data. Each subsidiary carries one accent — voltage for Electric,
+   flame for Gas, cargo here.
+   ========================================================================== */
+
+@theme {
+  /* dark ground */
+  --color-ink: #0c0e11;
+  --color-ink-2: #14171b;
+  --color-ink-3: #1b1f24;
+  --color-ink-line: #272c33;
+
+  /* light ground */
+  --color-bone: #f0ebe1;
+  --color-bone-2: #e5ded1;
+  --color-bone-line: #ccc2b0;
+
+  /* foregrounds, named for the ground they sit on */
+  --color-fg-ink: #f2efe9;
+  --color-fg-ink-muted: #9b9892;
+  --color-fg-bone: #14161a;
+  --color-fg-bone-muted: #55565b;
+
+  /* accent */
+  --color-cargo: #d97b24;
+  --color-cargo-lit: #eb9a4e;
+  --color-cargo-ink: #8a4408;
+
+  /* states, tuned to sit inside the palette rather than shout over it */
+  --color-signal: #2f7d52;
+  --color-signal-soft: #e2efe6;
+  --color-alert: #b23b2e;
+  --color-alert-soft: #f6e6e3;
+
+  --color-white: #ffffff;
+
+  --font-display: "Zodiak", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-sm: 0.25rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  --ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer base {
+  * {
+    border-color: var(--color-bone-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-bone);
+    color: var(--color-fg-bone);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Zodiak is a display serif — it carries headings on its own, so no heavy
+     weights and no negative tracking piled on top. */
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background: var(--color-cargo);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cargo);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  input, select, textarea, button { font-family: inherit; }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  input[type="number"] { appearance: textfield; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer components {
+  /* The group's signature: Switzer, uppercase, widely tracked. Used for every
+     eyebrow, label, button and piece of metadata. */
+  .font-label {
+    font-family: var(--font-label);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+
+  .eyebrow {
+    font-family: var(--font-label);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+  }
+
+  /* Underline that draws in from the left on hover. */
+  .link-slide {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.4s var(--ease-out-expo);
+  }
+  .link-slide:hover { background-size: 100% 1px; }
+}
+
+@layer utilities {
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 82rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page { padding-inline: 2rem; }
+  }
+  @media (min-width: 1280px) {
+    .container-page { padding-inline: 2.5rem; }
+  }
+
+  .tnum { font-variant-numeric: tabular-nums; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-rise {
+  animation: rise 0.8s var(--ease-entrance) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Depot ticker: two identical lists slide left in lockstep, so the loop is
+   seamless. Paused on hover, and stationary for reduced-motion users. */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.animate-ticker {
+  animation: ticker 45s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker { animation: none; }
 }

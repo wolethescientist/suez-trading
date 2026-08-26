@@ -1,0 +1,4 @@
+# Runtime uploads land here when Cloudinary is not configured.
+*
+!.gitignore
+!.gitkeep

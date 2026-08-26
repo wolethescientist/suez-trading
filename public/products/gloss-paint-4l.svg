@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <pattern id="g" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M25 0H0V25" stroke="#12151a" stroke-opacity=".05" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="#e9e6da"/>
+  <rect width="400" height="400" fill="url(#g)"/>
+  <rect x="24" y="24" width="14" height="2" fill="#d97b24"/>
+  <rect x="24" y="24" width="2" height="14" fill="#d97b24"/>
+  <rect x="362" y="374" width="14" height="2" fill="#12151a" fill-opacity=".25"/>
+  <rect x="374" y="362" width="2" height="14" fill="#12151a" fill-opacity=".25"/>
+  
+  <ellipse cx="200" cy="322" rx="84" ry="13" fill="#12151a" fill-opacity=".08"/>
+  <path d="M130 140h140l-16 162c-1 8-8 14-16 14h-76c-8 0-15-6-16-14L130 140Z" fill="#1f5c46" stroke="#12151a" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="118" y="118" width="164" height="26" rx="6" fill="#2b3138" stroke="#12151a" stroke-width="5"/>
+  <path d="M142 118c0-30 26-52 58-52s58 22 58 52" stroke="#12151a" stroke-width="5" fill="none"/>
+  <path d="M144 208c22-14 44 14 66 0s44 14 56 2" stroke="#fff" stroke-opacity=".65" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <rect x="152" y="240" width="96" height="40" rx="4" fill="#fff" fill-opacity=".82"/>
+  <rect x="168" y="254" width="64" height="6" fill="#d97b24"/>
+</svg>

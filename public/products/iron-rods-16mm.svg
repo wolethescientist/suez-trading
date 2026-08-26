@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <pattern id="g" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M25 0H0V25" stroke="#12151a" stroke-opacity=".05" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="#eae5db"/>
+  <rect width="400" height="400" fill="url(#g)"/>
+  <rect x="24" y="24" width="14" height="2" fill="#d97b24"/>
+  <rect x="24" y="24" width="2" height="14" fill="#d97b24"/>
+  <rect x="362" y="374" width="14" height="2" fill="#12151a" fill-opacity=".25"/>
+  <rect x="374" y="362" width="2" height="14" fill="#12151a" fill-opacity=".25"/>
+  
+  <ellipse cx="200" cy="320" rx="112" ry="14" fill="#12151a" fill-opacity=".08"/>
+  <rect x="92" y="96" width="26" height="206" rx="13" fill="#5f6b76" stroke="#12151a" stroke-width="5"/>
+         <path d="M99 120h12M99 150h12M99 180h12M99 210h12M99 240h12M99 270h12" stroke="#12151a" stroke-width="4" stroke-opacity=".5"/><rect x="136" y="106" width="26" height="196" rx="13" fill="#5f6b76" stroke="#12151a" stroke-width="5"/>
+         <path d="M143 130h12M143 160h12M143 190h12M143 220h12M143 250h12M143 280h12" stroke="#12151a" stroke-width="4" stroke-opacity=".5"/><rect x="180" y="96" width="26" height="206" rx="13" fill="#5f6b76" stroke="#12151a" stroke-width="5"/>
+         <path d="M187 120h12M187 150h12M187 180h12M187 210h12M187 240h12M187 270h12" stroke="#12151a" stroke-width="4" stroke-opacity=".5"/><rect x="224" y="106" width="26" height="196" rx="13" fill="#5f6b76" stroke="#12151a" stroke-width="5"/>
+         <path d="M231 130h12M231 160h12M231 190h12M231 220h12M231 250h12M231 280h12" stroke="#12151a" stroke-width="4" stroke-opacity=".5"/><rect x="268" y="96" width="26" height="206" rx="13" fill="#5f6b76" stroke="#12151a" stroke-width="5"/>
+         <path d="M275 120h12M275 150h12M275 180h12M275 210h12M275 240h12M275 270h12" stroke="#12151a" stroke-width="4" stroke-opacity=".5"/>
+  <rect x="80" y="176" width="240" height="14" rx="7" fill="#d97b24" stroke="#12151a" stroke-width="4"/>
+</svg>

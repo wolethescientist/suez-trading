@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <pattern id="g" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M25 0H0V25" stroke="#12151a" stroke-opacity=".05" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="#eee8dd"/>
+  <rect width="400" height="400" fill="url(#g)"/>
+  <rect x="24" y="24" width="14" height="2" fill="#d97b24"/>
+  <rect x="24" y="24" width="2" height="14" fill="#d97b24"/>
+  <rect x="362" y="374" width="14" height="2" fill="#12151a" fill-opacity=".25"/>
+  <rect x="374" y="362" width="2" height="14" fill="#12151a" fill-opacity=".25"/>
+  
+  <ellipse cx="200" cy="308" rx="104" ry="14" fill="#12151a" fill-opacity=".08"/>
+  <path d="M108 254c0-58 41-104 92-104s92 46 92 104H108Z" fill="#3b2f27"/>
+  <path d="M108 254c0-58 41-104 92-104s92 46 92 104H108Z" stroke="#12151a" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M200 150v104M164 162c-8 26-10 60-8 92M236 162c8 26 10 60 8 92" stroke="#12151a" stroke-width="5"/>
+  <path d="M76 254h248c6 0 10 5 10 11v10c0 6-4 11-10 11H76c-6 0-10-5-10-11v-10c0-6 4-11 10-11Z" fill="#d97b24" stroke="#12151a" stroke-width="5"/>
+  <rect x="182" y="172" width="36" height="34" rx="4" fill="#fff" fill-opacity=".85"/>
+</svg>
