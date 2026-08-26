@@ -234,7 +234,7 @@ const products: Seed[] = [
     featured: true,
     warehouse: "Idu Gas Bottling Plant",
     weightKg: 12.5,
-    imageUrl: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752147/suez-trading/products/prod-lpg-cylinder-12-5kg-0.jpg",
     shortDescription: "12.5kg cooking gas refill with certified tare weight and valve inspection.",
     description:
       "Clean propane-butane blend cooking gas weighed on digital scales. Every cylinder undergoes mandatory valve inspection, seal replacement, and leak testing prior to delivery.",
@@ -252,7 +252,7 @@ const products: Seed[] = [
     brand: "Suez Gas",
     warehouse: "Idu Gas Bottling Plant",
     weightKg: 50,
-    imageUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752159/suez-trading/products/prod-lpg-cylinder-50kg-0.jpg",
     shortDescription: "50kg commercial LPG cylinder refill for bakeries, hotels and restaurants.",
     description:
       "High-capacity 50kg LPG cylinder refills suited for industrial kitchens, hospitality facilities, and commercial bakeries. Scheduled route delivery available with manifold system inspections.",
@@ -274,7 +274,7 @@ const products: Seed[] = [
     brand: "Suez Lube",
     warehouse: "Idu Industrial Warehouse",
     weightKg: 23,
-    imageUrl: "https://images.unsplash.com/photo-1615906655593-ad0386982a0f?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752256/suez-trading/products/prod-engine-oil-sae-40-0.jpg",
     shortDescription: "Monograde heavy-duty diesel engine oil for trucks, tractors and stationary generators.",
     description:
       "Premium detergent SAE 40 mineral engine oil engineered for naturally aspirated and turbocharged diesel engines operating under high ambient temperatures. Delivers outstanding anti-wear protection and thermal stability.",
@@ -368,7 +368,7 @@ const products: Seed[] = [
     brand: "Dangote",
     warehouse: "Idu Building Depot",
     weightKg: 50,
-    imageUrl: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752120/suez-trading/products/prod-dangote-cement-0.jpg",
     shortDescription: "42.5R high-grade Portland limestone cement for structural concrete, decking and precast.",
     description:
       "Dangote 3X 42.5R Portland Limestone Cement. Stored under moisture-controlled covered warehousing on pallets. Fresh factory batch rotated weekly. Trailer load (600 or 900 bags) direct site delivery available across Nigeria.",
@@ -386,7 +386,7 @@ const products: Seed[] = [
     brand: "BUA",
     warehouse: "Idu Building Depot",
     weightKg: 50,
-    imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752132/suez-trading/products/prod-bua-cement-0.jpg",
     shortDescription: "BUA 42.5N Portland cement for block moulding, plastering and masonry works.",
     description:
       "BUA 42.5N multi-purpose cement providing consistent workability, rapid setting, and reliable compressive strength for residential and commercial masonry construction.",
@@ -404,7 +404,7 @@ const products: Seed[] = [
     brand: "Tiger TMT",
     warehouse: "Idu Building Depot",
     weightKg: 10.6,
-    imageUrl: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752224/suez-trading/products/prod-iron-rods-12mm-0.jpg",
     shortDescription: "12mm thermo-mechanically treated (TMT) high-yield ribbed steel rebar, 12 metre length.",
     description:
       "High-tensile BS 4449 Grade 500 TMT deformed steel rebar in standard 12-metre lengths. Features excellent weldability, ductility, and seismic resistance for building columns, beams, and slabs. Mill test certificates provided.",
@@ -422,7 +422,7 @@ const products: Seed[] = [
     brand: "Tiger TMT",
     warehouse: "Idu Building Depot",
     weightKg: 18.9,
-    imageUrl: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752240/suez-trading/products/prod-iron-rods-16mm-0.jpg",
     shortDescription: "16mm heavy structural reinforcement steel rebar, 12 metre length.",
     description:
       "16mm high-yield ribbed rebar for structural foundation rafts, retaining walls, civil bridges, and high-rise load-bearing pillars. Cut and bend to bar bending schedules available on order.",
@@ -559,7 +559,7 @@ const products: Seed[] = [
     featured: true,
     brand: "Eva",
     warehouse: "Abuja FMCG Warehouse",
-    imageUrl: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752289/suez-trading/products/prod-bottled-water-carton-0.jpg",
     shortDescription: "NAFDAC-registered premium bottled table water, twelve 75cl bottles per carton.",
     description:
       "Treated, ozonated, and micro-filtered natural table water bottled under strict quality standards. Supplied shrink-wrapped by the carton or pallet for corporate offices, events, and construction site canteens.",
@@ -650,7 +650,7 @@ const products: Seed[] = [
     brand: "Lutian",
     warehouse: "Idu Equipment Depot",
     weightKg: 85,
-    imageUrl: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://res.cloudinary.com/dclfsbnq2/image/upload/v1787752185/suez-trading/products/prod-petrol-generator-6-5kva-0.jpg",
     shortDescription: "Key-start 6.5kVA single phase petrol generator with AVR and 25 litre fuel tank.",
     description:
       "Rugged 6.5kVA 100% copper-wound alternator generator with digital voltmeter, circuit breaker, wheel kit, and electric key start. Supplies steady power for duplex homes, offices, deep freezers, and 1.5HP air conditioners.",
