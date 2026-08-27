@@ -5,6 +5,7 @@ import {
   BulkSupplyBand,
   CategoryGrid,
   ClosingCta,
+  DepotRates,
   Divisions,
   HowItWorks,
   SectionHeading,
@@ -16,11 +17,18 @@ import { site } from "@/lib/site";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [categories, featured, productCount, boardProducts] = await Promise.all([
+  const [categories, featured, productCount, entryPrices, rateProducts] = await Promise.all([
     getCategories(),
     getFeaturedProducts(8),
     prisma.product.count({ where: { status: "ACTIVE" } }),
-    // The rate board leads on the fuels people ring up about.
+    // Cheapest live line per counter, so the hero can show a real "from" price
+    // for every category rather than a marketing number.
+    prisma.product.groupBy({
+      by: ["categoryId"],
+      where: { status: "ACTIVE" },
+      _min: { price: true },
+    }),
+    // The fuel desk further down the page still quotes live off the catalogue.
     prisma.product.findMany({
       where: {
         status: "ACTIVE",
@@ -37,17 +45,26 @@ export default async function HomePage() {
     }),
   ]);
 
-  // Keep the board in the order the trade quotes them, not whatever the
+  const minPrice = new Map(entryPrices.map((row) => [row.categoryId, row._min.price]));
+
+  const catalogue = categories.map((category) => ({
+    slug: category.slug,
+    label: category.name,
+    lines: category._count.products,
+    from: minPrice.get(category.id) ?? null,
+  }));
+
+  // Keep the fuel board in the order the trade quotes them, not whatever the
   // database returns.
-  const boardOrder = ["ago-diesel", "pms-petrol", "dpk-kerosene", "lpg-cylinder-12-5kg"];
+  const rateOrder = ["ago-diesel", "pms-petrol", "dpk-kerosene", "lpg-cylinder-12-5kg"];
   const shortNames: Record<string, string> = {
     "ago-diesel": "AGO — Diesel",
     "pms-petrol": "PMS — Petrol",
     "dpk-kerosene": "DPK — Kerosene",
     "lpg-cylinder-12-5kg": "LPG — 12.5kg",
   };
-  const board = boardOrder
-    .map((slug) => boardProducts.find((p) => p.slug === slug))
+  const rates = rateOrder
+    .map((slug) => rateProducts.find((p) => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
     .map((p) => ({
       slug: p.slug,
@@ -65,10 +82,11 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero board={board} ticker={ticker} productCount={productCount} />
+      <Hero catalogue={catalogue} ticker={ticker} productCount={productCount} />
       <TrustStrip />
       <Divisions />
       <CategoryGrid categories={categories} />
+      <DepotRates rates={rates} />
 
       {featured.length > 0 && (
         <section className="py-20 lg:py-28">

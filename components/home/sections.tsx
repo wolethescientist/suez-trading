@@ -13,6 +13,7 @@ import {
   Waves,
 } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
+import { formatNaira } from "@/lib/money";
 import { services } from "@/lib/site";
 
 const icons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -123,7 +124,7 @@ export function Divisions() {
               Six divisions, one <span className="text-cargo">supply chain</span>
             </>
           }
-          description="From lifting fuel at the depot to laying the road it travels on, our six divisions cover the whole chain — so one supplier answers for the lot."
+          description="From the materials on site to the goods on the shelf — and the fuel and trucks that keep both moving — our six divisions cover the whole chain, so one supplier answers for the lot."
           action={{ href: "/services", label: "All divisions" }}
         />
 
@@ -291,9 +292,9 @@ export function BulkSupplyBand() {
             not by the drum?
           </h2>
           <p className="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-fg-bone-muted">
-            Bulk AGO, trailer-load cement, site consumables on a monthly
-            schedule, or a full haulage contract — priced against volume and
-            committed to in writing.
+            Trailer-load cement, site consumables on a monthly schedule,
+            stocked general supplies, bulk AGO or a full haulage contract —
+            priced against volume and committed to in writing.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/contact" size="lg">
@@ -312,7 +313,7 @@ export function BulkSupplyBand() {
 
         <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10">
           {[
-            { v: "5,000 L", l: "Minimum bulk fuel load" },
+            { v: "6", l: "Supply divisions" },
             { v: "24–72 hr", l: "Typical delivery window" },
             { v: "36", l: "States covered" },
             { v: "2018", l: "Incorporated in Nigeria" },
@@ -351,6 +352,94 @@ export function ClosingCta() {
               Speak to our team
             </ButtonLink>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------ depot rates */
+
+export type RateRow = {
+  slug: string;
+  label: string;
+  price: number;
+  unit: string;
+  stock: number;
+  trackInventory: boolean;
+};
+
+/**
+ * The fuel desk, kept as its own band well down the page. Petroleum is one of
+ * six divisions, so it gets a section rather than the hero — but the rates are
+ * still live off the catalogue, because that is what callers ring up about.
+ */
+export function DepotRates({ rates }: { rates: RateRow[] }) {
+  if (rates.length === 0) return null;
+
+  return (
+    <section className="bg-ink py-20 text-fg-ink lg:py-28">
+      <div className="container-page">
+        <SectionHeading
+          eyebrow="Fuel desk"
+          title={
+            <>
+              Today&rsquo;s <span className="text-cargo-lit">depot rates</span>
+            </>
+          }
+          description="Diesel, petrol, kerosene and cooking gas, priced off the depot and updated as the market moves."
+          action={{ href: "/shop?category=petroleum-products", label: "All fuel lines" }}
+          tone="dark"
+        />
+
+        <ul className="mt-14 grid border-t border-l border-ink-line sm:grid-cols-2 lg:grid-cols-4">
+          {rates.map((row) => {
+            const out = row.trackInventory && row.stock <= 0;
+            return (
+              <li key={row.slug} className="border-b border-r border-ink-line">
+                <Link
+                  href={`/shop/${row.slug}`}
+                  className="group flex h-full flex-col justify-between gap-8 p-7 transition-colors duration-300 hover:bg-ink-2 lg:p-9"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-display text-[1.25rem] leading-tight transition-colors group-hover:text-cargo-lit">
+                        {row.label}
+                      </h3>
+                      <p className="mt-2 font-label text-[0.5625rem] tracking-[0.12em] text-fg-ink-muted">
+                        {out
+                          ? "Out of stock"
+                          : row.trackInventory
+                            ? `${row.stock.toLocaleString()} available`
+                            : "Available"}
+                      </p>
+                    </div>
+                    <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-fg-ink-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cargo-lit" />
+                  </div>
+
+                  <div>
+                    <span className="tnum block font-mono text-[1.5rem] text-cargo-lit">
+                      {formatNaira(row.price)}
+                    </span>
+                    <span className="mt-1 block font-label text-[0.5625rem] tracking-[0.12em] text-fg-ink-muted">
+                      {row.unit === "each" ? "each" : row.unit}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mt-10 flex flex-col gap-6 border-t border-ink-line pt-8 md:flex-row md:items-center md:justify-between">
+          <p className="max-w-xl text-[0.8125rem] leading-relaxed text-fg-ink-muted">
+            Petroleum pricing moves with the market. The rate shown when you pay
+            is the rate you get — and bulk loads from 5,000 litres are quoted
+            against volume.
+          </p>
+          <ButtonLink href="/contact" size="lg" variant="onInk" className="flex-none">
+            Request a bulk fuel quote
+          </ButtonLink>
         </div>
       </div>
     </section>

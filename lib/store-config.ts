@@ -17,7 +17,7 @@ export const DEFAULT_SETTINGS: StoreSettings = {
   freeShippingThreshold: 25_000_000, // ₦250,000
   pickupAddress: "No. 20 Alexandra Crescent, Wuse II, Abuja, FCT",
   announcement:
-    "Nationwide delivery on petroleum products, building materials and general supplies.",
+    "Nationwide delivery on general supplies, building materials and petroleum products.",
   announcementActive: true,
   contactEmail: "sales@sueztrading.com",
   contactPhone: "+234 800 000 0000",

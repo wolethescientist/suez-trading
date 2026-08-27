@@ -7,9 +7,9 @@ export const site = {
   legalName: "Suez Trading Internationale Limited",
   name: "Suez Trading",
   shortName: "SUEZ",
-  tagline: "Energy, materials and logistics — supplied properly.",
+  tagline: "General supplies, materials and energy — supplied properly.",
   description:
-    "Suez Trading Internationale Limited is a Nigerian trading and services company supplying petroleum products, building materials, beverages and general goods, alongside haulage, construction and facility services.",
+    "Suez Trading Internationale Limited is a Nigerian general trading and services company supplying building materials, beverages, appliances and general goods, alongside petroleum products, haulage, construction and facility services.",
   incorporated: "2018",
   stampDutyCert: "2018-6355-48277-58720",
   address: {

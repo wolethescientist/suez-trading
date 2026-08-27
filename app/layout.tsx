@@ -13,20 +13,21 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: `${site.legalName} — Petroleum, Materials & Logistics`,
+    default: `${site.legalName} — General Supplies, Materials & Logistics`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
   keywords: [
-    "petroleum products Nigeria", "diesel supplier Abuja", "AGO supply",
-    "building materials Nigeria", "cement supplier", "haulage Nigeria",
+    "general supplies Nigeria", "general merchant Abuja", "building materials Nigeria",
+    "cement supplier", "office and site consumables", "haulage Nigeria",
+    "petroleum products Nigeria", "diesel supplier Abuja",
     "Suez Trading Internationale",
   ],
   openGraph: {
     type: "website",
     locale: "en_NG",
     siteName: site.legalName,
-    title: `${site.legalName} — Petroleum, Materials & Logistics`,
+    title: `${site.legalName} — General Supplies, Materials & Logistics`,
     description: site.description,
   },
   robots: { index: true, follow: true },
