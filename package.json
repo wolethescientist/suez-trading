@@ -16,7 +16,7 @@
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
     "check:deploy": "tsx --conditions=react-server scripts/check-deploy.mjs",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+    "vercel-build": "prisma generate && next build"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
