@@ -17,17 +17,10 @@ import { site } from "@/lib/site";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [categories, featured, productCount, entryPrices, rateProducts] = await Promise.all([
+  const [categories, featured, productCount, rateProducts] = await Promise.all([
     getCategories(),
     getFeaturedProducts(8),
     prisma.product.count({ where: { status: "ACTIVE" } }),
-    // Cheapest live line per counter, so the hero can show a real "from" price
-    // for every category rather than a marketing number.
-    prisma.product.groupBy({
-      by: ["categoryId"],
-      where: { status: "ACTIVE" },
-      _min: { price: true },
-    }),
     // The fuel desk further down the page still quotes live off the catalogue.
     prisma.product.findMany({
       where: {
@@ -45,14 +38,12 @@ export default async function HomePage() {
     }),
   ]);
 
-  const minPrice = new Map(entryPrices.map((row) => [row.categoryId, row._min.price]));
-
-  const catalogue = categories.map((category) => ({
-    slug: category.slug,
-    label: category.name,
-    lines: category._count.products,
-    from: minPrice.get(category.id) ?? null,
-  }));
+  // The hero opens on general goods, so lead with the yard rather than the
+  // fuel counter; fall back to whatever artwork the catalogue does have.
+  const heroImage =
+    categories.find((c) => c.slug === "building-materials")?.image ??
+    categories.find((c) => c.image)?.image ??
+    null;
 
   // Keep the fuel board in the order the trade quotes them, not whatever the
   // database returns.
@@ -82,7 +73,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero catalogue={catalogue} ticker={ticker} productCount={productCount} />
+      <Hero image={heroImage} ticker={ticker} productCount={productCount} />
       <TrustStrip />
       <Divisions />
       <CategoryGrid categories={categories} />
