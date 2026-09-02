@@ -8,6 +8,7 @@ const shopLinks = [
   { href: "/shop?category=lubricants-and-oils", label: "Lubricants & oils" },
   { href: "/shop?category=building-materials", label: "Building materials" },
   { href: "/shop?category=beverages-and-consumables", label: "Beverages" },
+  { href: "/shop?category=fmcg", label: "FMCG & household" },
   { href: "/shop?category=appliances-and-power", label: "Appliances & power" },
   { href: "/shop?category=safety-and-industrial", label: "Safety & industrial" },
 ];

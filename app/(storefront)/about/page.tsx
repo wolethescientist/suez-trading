@@ -1,29 +1,50 @@
 import type { Metadata } from "next";
-import { Building2, FileCheck2, MapPin, Target } from "lucide-react";
+import {
+  Gauge,
+  Layers,
+  MapPin,
+  ScrollText,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
 import { services, site } from "@/lib/site";
 import { ButtonLink } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Suez Trading Internationale Limited is a Nigerian trading and services company registered under the Companies and Allied Matters Act, operating from Wuse II, Abuja.",
+    "Suez Trading Internationale Limited is a Nigerian trading and services company registered under the Companies and Allied Matters Act, operating from Jabi, Abuja.",
 };
 
+/**
+ * The five guiding principles as published on the previous sueztrading.com,
+ * kept word for word — this is the company's own language, not ours.
+ */
 const values = [
   {
-    icon: Target,
-    title: "Say what we can actually deliver",
-    copy: "A confirmed date we can hold beats an optimistic one we cannot. If a line is short, you hear it before you pay, not after.",
+    icon: Gauge,
+    title: "Efficiency-Driven Culture",
+    copy: "We prioritize streamlined systems and operational excellence to deliver energy through efficient, high performing value chains.",
   },
   {
-    icon: FileCheck2,
-    title: "Documented, every load",
-    copy: "Metered volumes, batch numbers, delivery certificates and mill certificates on request. Supply you can audit later.",
+    icon: Layers,
+    title: "Integrated Energy Services",
+    copy: "Our end-to-end capabilities from import and storage to retail, ensure quality control, cost efficiency, and timely delivery.",
   },
   {
-    icon: Building2,
-    title: "One supplier, fewer gaps",
-    copy: "Fuel, materials, trucks and crews under one roof means fewer handoffs — and one company answerable for the outcome.",
+    icon: ShieldCheck,
+    title: "Safety as a Core Value",
+    copy: "We champion consumer safety through innovative solutions like our SRG leak-detection regulators, reinforcing responsible energy use.",
+  },
+  {
+    icon: Zap,
+    title: "Decentralized Energy Vision",
+    copy: "We invest in smart, decentralized systems that bring energy closer to users and support a low-carbon, sustainable future.",
+  },
+  {
+    icon: ScrollText,
+    title: "Compliance and Standards",
+    copy: "We operate with integrity, adhering to regulatory standards and best practices to ensure long-term trust and sustainability.",
   },
 ];
 
@@ -40,7 +61,7 @@ export default function AboutPage() {
             {site.legalName} was incorporated in {site.incorporated} as a private
             company limited by shares, registered with the Corporate Affairs
             Commission under the Companies and Allied Matters Act. We operate
-            from Wuse II, Abuja, and trade nationwide.
+            from Jabi, Abuja, and trade nationwide.
           </p>
         </div>
         <div className="h-px bg-cargo" />
@@ -70,10 +91,22 @@ export default function AboutPage() {
               </p>
               <p>
                 Today we supply refined petroleum products in bulk and retail,
-                stock building materials and general goods for sale online and
-                on contract, run haulage across the country, and deliver
+                stock building materials, FMCG and general goods for sale online
+                and on contract, run haulage across the country, and deliver
                 construction and facility services for public and private
                 clients.
+              </p>
+              <p>
+                At Suez Trading Internationale, we go beyond traditional LPG
+                distribution. Since 2018, we&rsquo;ve evolved into a diversified
+                energy and infrastructure powerhouse, specializing in the
+                importation, retail, storage, and safe delivery of energy
+                products. We&rsquo;ve embedded performance, compliance, and
+                innovation into our DNA, and we&rsquo;re actively building the
+                future of energy through decentralized systems and cutting-edge
+                safety technology. Our vision is clear: to build infrastructure
+                capacity that brings energy solutions closer to the people who
+                need them most.
               </p>
             </div>
           </div>
@@ -100,7 +133,7 @@ export default function AboutPage() {
             <div className="mt-6 flex items-start gap-3 rounded-sm border border-bone-line p-5">
               <MapPin className="mt-0.5 h-4.5 w-4.5 flex-none text-cargo" />
               <p className="text-[0.875rem] leading-relaxed text-fg-bone-muted">
-                Head office in Wuse II, Abuja, with delivery coverage across all
+                Head office in Jabi, Abuja, with delivery coverage across all
                 36 states and the Federal Capital Territory.
               </p>
             </div>
@@ -108,14 +141,35 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="bg-ink py-16 text-white lg:py-24">
+        <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <p className="eyebrow text-cargo">How we work</p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-[1.06] sm:text-[2.5rem]">
+              Our Approach
+            </h2>
+          </div>
+          <p className="text-[1.0625rem] leading-relaxed text-fg-ink-muted lg:col-span-8">
+            Our approach is anchored in innovation, efficiency, and safety. Our
+            operations are guided by an integrated infrastructure strategy that
+            enhances the full energy value chain, from importation and storage
+            to retail and decentralized distribution. We prioritize compliance,
+            stakeholder value, and cutting-edge safety systems, including
+            proprietary leak-detection technology. Through continuous
+            performance improvement and investment in future ready systems, we
+            are shaping a resilient, accessible, and low-carbon energy future.
+          </p>
+        </div>
+      </section>
+
       <section className="border-y border-bone-line bg-bone py-16 lg:py-24">
         <div className="container-page">
-          <p className="eyebrow text-cargo">How we work</p>
+          <p className="eyebrow text-cargo">Our values</p>
           <h2 className="mt-4 max-w-2xl text-3xl font-extrabold text-ink">
-            Three things we hold ourselves to
+            Guiding principles of our voyage
           </h2>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-bone-line bg-bone-line lg:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-bone-line bg-bone-line sm:grid-cols-2 lg:grid-cols-3">
             {values.map((value) => (
               <div key={value.title} className="bg-white p-8">
                 <value.icon className="h-6 w-6 text-cargo" />

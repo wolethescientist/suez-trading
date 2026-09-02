@@ -8,6 +8,7 @@ import {
   HardHat,
   Leaf,
   PackageSearch,
+  ShoppingBasket,
   Truck,
   Warehouse,
   Waves,
@@ -23,6 +24,7 @@ const icons: Record<string, React.ComponentType<{ className?: string }>> = {
   HardHat,
   PackageSearch,
   Leaf,
+  ShoppingBasket,
 };
 
 /** Small reusable section heading so rhythm stays identical page to page. */
@@ -121,10 +123,10 @@ export function Divisions() {
           eyebrow="What we do"
           title={
             <>
-              Six divisions, one <span className="text-cargo">supply chain</span>
+              Seven divisions, one <span className="text-cargo">supply chain</span>
             </>
           }
-          description="From the materials on site to the goods on the shelf — and the fuel and trucks that keep both moving — our six divisions cover the whole chain, so one supplier answers for the lot."
+          description="From the materials on site to the goods on the shelf — and the fuel and trucks that keep both moving — our seven divisions cover the whole chain, so one supplier answers for the lot."
           action={{ href: "/services", label: "All divisions" }}
         />
 
@@ -313,7 +315,7 @@ export function BulkSupplyBand() {
 
         <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10">
           {[
-            { v: "6", l: "Supply divisions" },
+            { v: "7", l: "Supply divisions" },
             { v: "24–72 hr", l: "Typical delivery window" },
             { v: "36", l: "States covered" },
             { v: "2018", l: "Incorporated in Nigeria" },
@@ -337,19 +339,21 @@ export function ClosingCta() {
       <div className="container-page">
         <div className="border-y border-bone-line px-8 py-20 text-center lg:py-24">
           <p className="eyebrow text-cargo">Get started</p>
-          <h2 className="mx-auto mt-5 max-w-2xl text-3xl font-extrabold leading-[1.08] text-ink sm:text-[2.5rem]">
-            Tell us what you need supplied, and where.
+          <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-extrabold leading-[1.08] text-ink sm:text-[2.5rem]">
+            Driving Energy Supply Through Efficient Value Chains
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-fg-bone-muted">
-            Order the standard lines online in minutes, or talk to us about a
-            supply contract that fits your operation.
+          <p className="mx-auto mt-5 max-w-2xl text-[1.0625rem] leading-relaxed text-fg-bone-muted">
+            Your dependable partner in driving smarter energy solutions. Whether
+            you&rsquo;re a household or a business, we deliver safe, affordable,
+            and efficient energy systems that power progress and prioritize your
+            peace of mind.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <ButtonLink href="/shop" size="lg">
               Shop the catalogue
             </ButtonLink>
             <ButtonLink href="/contact" size="lg" variant="outline">
-              Speak to our team
+              Get in touch
             </ButtonLink>
           </div>
         </div>

@@ -71,7 +71,7 @@ export function Hero({
           </div>
 
           <ul className="animate-rise mt-14 flex flex-wrap gap-x-8 gap-y-3 [animation-delay:240ms]">
-            {services.slice(0, 6).map((service) => (
+            {services.map((service) => (
               <li key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}

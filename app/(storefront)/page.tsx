@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/db";
 import { getCategories, getFeaturedProducts } from "@/lib/catalogue";
 import { Hero } from "@/components/home/hero";
+import { Partners } from "@/components/home/partners";
 import {
   BulkSupplyBand,
   CategoryGrid,
@@ -38,12 +39,10 @@ export default async function HomePage() {
     }),
   ]);
 
-  // The hero opens on general goods, so lead with the yard rather than the
-  // fuel counter; fall back to whatever artwork the catalogue does have.
-  const heroImage =
-    categories.find((c) => c.slug === "building-materials")?.image ??
-    categories.find((c) => c.image)?.image ??
-    null;
+  // The hero opens on the trade as a whole — a container terminal rather than
+  // any one division's yard — so it stays true whichever way the catalogue
+  // grows. Fixed artwork, not a category image, because it is the front door.
+  const heroImage = "/hero/suez-hero.jpg";
 
   // Keep the fuel board in the order the trade quotes them, not whatever the
   // database returns.
@@ -75,6 +74,7 @@ export default async function HomePage() {
     <>
       <Hero image={heroImage} ticker={ticker} productCount={productCount} />
       <TrustStrip />
+      <Partners />
       <Divisions />
       <CategoryGrid categories={categories} />
       <DepotRates rates={rates} />

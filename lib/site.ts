@@ -1,7 +1,7 @@
 /**
  * Company facts drawn from the CAC Memorandum of Association for
  * SUEZ TRADING INTERNATIONALE LIMITED (registered Nigeria, May 2018).
- * Contact details marked PLACEHOLDER should be confirmed before go-live.
+ * Contact details are the live company lines published at sueztrading.com.
  */
 export const site = {
   legalName: "Suez Trading Internationale Limited",
@@ -13,16 +13,15 @@ export const site = {
   incorporated: "2018",
   stampDutyCert: "2018-6355-48277-58720",
   address: {
-    line1: "No. 20 Alexandra Crescent",
-    line2: "Wuse II",
+    line1: "No. 6 I. E Madubuike Close",
+    line2: "Jabi",
     city: "Abuja",
     state: "Federal Capital Territory",
     country: "Nigeria",
   },
-  // PLACEHOLDER — replace with the company's live lines
-  phone: "+234 800 000 0000",
-  whatsapp: "+2348000000000",
-  email: "sales@sueztrading.com",
+  phone: "+234 908 007 0070",
+  whatsapp: "+2349080070070",
+  email: "info@sueztrading.com",
   supportEmail: "support@sueztrading.com",
   hours: "Mon – Fri, 8:00am – 6:00pm · Sat, 9:00am – 3:00pm",
   socials: {
@@ -45,7 +44,7 @@ export type ServiceLine = {
   icon: string;
 };
 
-/** The six operating divisions, mapped from clauses 1–12 of the memorandum. */
+/** The seven operating divisions, mapped from clauses 1–12 of the memorandum. */
 export const services: ServiceLine[] = [
   {
     slug: "petroleum-products",
@@ -189,6 +188,30 @@ export const services: ServiceLine[] = [
       { label: "Contracts", value: "Monthly / annual" },
       { label: "Response", value: "48 hrs" },
       { label: "Coverage", value: "FCT & beyond" },
+    ],
+  },
+  {
+    slug: "fmcg-distribution",
+    index: "07",
+    name: "FMCG Distribution & Trade",
+    short: "FMCG distribution",
+    icon: "ShoppingBasket",
+    summary:
+      "Fast-moving consumer goods — food, drinks, household and personal care — sourced, warehoused and distributed at scale.",
+    intro:
+      "We buy fast-moving consumer goods direct from manufacturers and importers, hold them in our own warehousing, and move them out to wholesalers, retailers, hospitality and corporate accounts. High-turnover lines need short lead times and honest stock figures, so we run FMCG off the same depot discipline as everything else: what the page says is on the floor is on the floor.",
+    capabilities: [
+      "Food staples — rice, grains, cooking oils, sugar, flour and pasta",
+      "Beverages — water, soft drinks, malt, juices and spirits",
+      "Household care — detergents, cleaning agents, paper and disposables",
+      "Personal care and toiletries",
+      "Manufacturer and brand distributorship across the FCT and beyond",
+      "Route-to-market distribution for retail, hospitality and institutional buyers",
+    ],
+    outcomes: [
+      { label: "Order online", value: "Yes" },
+      { label: "Restock cycle", value: "Weekly" },
+      { label: "Coverage", value: "Nationwide" },
     ],
   },
 ];
