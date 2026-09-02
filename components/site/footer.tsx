@@ -1,17 +1,8 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/site/logo";
+import { getCategories } from "@/lib/catalogue";
 import { services, site } from "@/lib/site";
-
-const shopLinks = [
-  { href: "/shop?category=petroleum-products", label: "Petroleum products" },
-  { href: "/shop?category=lubricants-and-oils", label: "Lubricants & oils" },
-  { href: "/shop?category=building-materials", label: "Building materials" },
-  { href: "/shop?category=beverages-and-consumables", label: "Beverages" },
-  { href: "/shop?category=fmcg", label: "FMCG & household" },
-  { href: "/shop?category=appliances-and-power", label: "Appliances & power" },
-  { href: "/shop?category=safety-and-industrial", label: "Safety & industrial" },
-];
 
 const companyLinks = [
   { href: "/about", label: "About Suez Trading" },
@@ -21,7 +12,18 @@ const companyLinks = [
   { href: "/faq", label: "Help & FAQ" },
 ];
 
-export function Footer() {
+/**
+ * The Shop column follows the live catalogue rather than a hardcoded list, so
+ * a category that is emptied or deactivated stops being advertised here
+ * instead of linking to an empty result.
+ */
+export async function Footer() {
+  const categories = await getCategories();
+  const shopLinks = categories.map((category) => ({
+    href: `/shop?category=${category.slug}`,
+    label: category.name,
+  }));
+
   return (
     <footer className="mt-auto bg-ink text-fg-ink-muted">
       <div className="h-px bg-cargo" />

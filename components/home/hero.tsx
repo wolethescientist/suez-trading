@@ -57,8 +57,8 @@ export function Hero({
           <p className="animate-rise mt-10 max-w-lg text-[1.0625rem] leading-relaxed text-fg-ink-muted [animation-delay:80ms]">
             Cement and rods for the site, drinks and consumables for the office,
             generators, tools, safety kit — and the fuel and trucks that keep it
-            all moving. {productCount} lines held in depot and delivered
-            nationwide.
+            all moving. {productCount} line{productCount === 1 ? "" : "s"} held
+            in depot and delivered nationwide.
           </p>
 
           <div className="animate-rise mt-10 flex flex-col gap-3 sm:flex-row [animation-delay:160ms]">
