@@ -13,15 +13,14 @@ import {
   TrustStrip,
 } from "@/components/home/sections";
 import { ProductCard } from "@/components/shop/product-card";
-import { site } from "@/lib/site";
+import { services, site } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [categories, featured, productCount, rateProducts] = await Promise.all([
+  const [categories, featured, rateProducts] = await Promise.all([
     getCategories(),
     getFeaturedProducts(8),
-    prisma.product.count({ where: { status: "ACTIVE" } }),
     // The fuel desk further down the page still quotes live off the catalogue.
     prisma.product.findMany({
       where: {
@@ -65,14 +64,16 @@ export default async function HomePage() {
       trackInventory: p.trackInventory,
     }));
 
-  const ticker = categories.map((category) => ({
-    label: category.name,
-    value: `${category._count.products} line${category._count.products === 1 ? "" : "s"}`,
+  // Fed from the divisions rather than the catalogue: with a single category
+  // a stock ticker just repeats one row, whereas the divisions always fill it.
+  const ticker = services.map((service) => ({
+    label: service.short,
+    value: service.index,
   }));
 
   return (
     <>
-      <Hero image={heroImage} ticker={ticker} productCount={productCount} />
+      <Hero image={heroImage} ticker={ticker} />
       <TrustStrip />
       <Partners />
       <Divisions />

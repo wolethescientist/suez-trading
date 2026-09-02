@@ -4,18 +4,16 @@ import { ProductImage } from "@/components/shop/product-image";
 import { services } from "@/lib/site";
 
 /**
- * A statement hero, deliberately without a data panel: Suez trades general
- * goods, so the front page opens on the yard rather than on a price board.
- * Live pricing belongs to the shop and to the fuel desk further down the page.
+ * A statement hero, deliberately without a data panel. The shop currently
+ * carries a single line, so the front page leads on what the company does
+ * across its divisions rather than on the size of the catalogue.
  */
 export function Hero({
   image,
   ticker,
-  productCount,
 }: {
   image: string | null;
   ticker: { label: string; value: string }[];
-  productCount: number;
 }) {
   return (
     <section className="relative overflow-hidden bg-ink text-fg-ink">
@@ -29,12 +27,12 @@ export function Hero({
           </p>
 
           <h1 className="animate-rise mt-8 text-[3rem] leading-[0.98] sm:text-[4rem] xl:text-[4.75rem]">
-            One supplier
+            Powering
             <br />
-            for the whole
+            progress, fueling
             <br />
             <span className="relative inline-block">
-              list.
+              safety.
               <svg
                 aria-hidden="true"
                 viewBox="0 0 300 12"
@@ -55,15 +53,15 @@ export function Hero({
           </h1>
 
           <p className="animate-rise mt-10 max-w-lg text-[1.0625rem] leading-relaxed text-fg-ink-muted [animation-delay:80ms]">
-            Cement and rods for the site, drinks and consumables for the office,
-            generators, tools, safety kit — and the fuel and trucks that keep it
-            all moving. {productCount} line{productCount === 1 ? "" : "s"} held
-            in depot and delivered nationwide.
+            Energy supply, haulage, construction, general and FMCG
+            distribution — seven divisions across one value chain, delivered
+            nationwide from Abuja. Our SRG smart gas regulator, with leak
+            detection built in, is available to order online.
           </p>
 
           <div className="animate-rise mt-10 flex flex-col gap-3 sm:flex-row [animation-delay:160ms]">
             <ButtonLink href="/shop" size="lg">
-              Shop the catalogue
+              Shop the SRG regulator
             </ButtonLink>
             <ButtonLink href="/contact" size="lg" variant="onInk">
               Request a bulk quote
@@ -102,7 +100,7 @@ export function Hero({
       )}
       </div>
 
-      {/* Stock ticker — a depot board strip running under the fold line. */}
+      {/* Division strip — a directory board running under the fold line. */}
       <div className="relative z-10 border-y border-ink-line bg-ink-2">
         <div className="group flex overflow-hidden py-3">
           {[0, 1].map((copy) => (
