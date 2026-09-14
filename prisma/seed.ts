@@ -141,7 +141,7 @@ const products: Seed[] = [
     name: "SUEZ SRG Smart Gas Regulator",
     sku: "SUEZ-SRG-REG",
     category: "safety-and-industrial",
-    price: N(10000),
+    price: N(60000),
     unit: "each",
     stock: 250,
     lowStockThreshold: 40,

@@ -10,7 +10,7 @@
  *
  * Adding a product: copy the block below, drop its photograph into
  * `public/products/`, and point `images[].url` at it. Money is integer kobo —
- * ₦10,000 is 1_000_000 — exactly as the database stored it, so nothing
+ * ₦60,000 is 6_000_000 — exactly as the database stored it, so nothing
  * downstream (formatters, cart, order maths) has to change.
  */
 
@@ -96,7 +96,7 @@ export const PRODUCTS: StaticProduct[] = [
       "Through our partnership with SRG, we supply proprietary gas regulators equipped with leak detection and pressure monitoring features. The regulator shuts off automatically on a detected leak or pressure fault, making cylinder gas materially safer for households, kitchens and site canteens. Fits standard LPG cylinders and is supplied with fitting instructions.",
     brand: "SRG",
     categoryId: "cat-safety-and-industrial",
-    price: KOBO(10_000),
+    price: KOBO(60_000),
     compareAtPrice: null,
     costPrice: null,
     unit: "each",
