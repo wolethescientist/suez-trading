@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PackageX } from "lucide-react";
-import { getCategories, listProducts } from "@/lib/catalogue";
+import { countActiveProducts, getCategories, listProducts } from "@/lib/catalogue";
 import { ProductCard } from "@/components/shop/product-card";
 import { ShopFilters } from "@/components/shop/filters";
 import { Pagination } from "@/components/shop/pagination";
 import { ButtonLink } from "@/components/ui/button";
-import { prisma } from "@/lib/db";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +23,7 @@ export default async function ShopPage({ searchParams }: { searchParams: SearchP
 
   const [categories, totalActive] = await Promise.all([
     getCategories(),
-    prisma.product.count({ where: { status: "ACTIVE" } }),
+    countActiveProducts(),
   ]);
 
   const { items, total, page, pages } = await listProducts({
@@ -50,7 +50,9 @@ export default async function ShopPage({ searchParams }: { searchParams: SearchP
           </h1>
           <p className="mt-4 max-w-2xl text-[1.0625rem] leading-relaxed text-fg-ink-muted">
             {activeCategory?.description ??
-              "Live stock across six categories. Quantities shown are what we are physically holding — add to cart and pay securely with Paystack."}
+              (ONLINE_ORDERING
+                ? "Live stock across our categories. Quantities shown are what we are physically holding — add to cart and pay securely with Paystack."
+                : "Our own-brand lines, held in depot in Abuja. Quantities shown are what we are physically holding — reach out and we will confirm price and delivery.")}
           </p>
         </div>
       </section>

@@ -1,4 +1,6 @@
 import { requireAdmin } from "@/lib/auth";
+import { DATABASE_ENABLED } from "@/lib/commerce";
+import { AdminNeedsDatabase } from "@/components/admin/needs-database";
 import { prisma } from "@/lib/db";
 import { Sidebar } from "@/components/admin/sidebar";
 import { lowStockProducts } from "@/lib/inventory";
@@ -10,6 +12,9 @@ export default async function AdminDashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // The back office is the one part of the site that genuinely needs Postgres.
+  if (!DATABASE_ENABLED) return <AdminNeedsDatabase />;
+
   const user = await requireAdmin();
 
   const [pendingOrders, newEnquiries, lowStock] = await Promise.all([

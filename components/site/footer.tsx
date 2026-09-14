@@ -3,12 +3,15 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/site/logo";
 import { getCategories } from "@/lib/catalogue";
 import { services, site } from "@/lib/site";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 
 const companyLinks = [
   { href: "/about", label: "About Suez Trading" },
   { href: "/services", label: "Our divisions" },
   { href: "/contact", label: "Contact & quotes" },
-  { href: "/track", label: "Track an order" },
+  // Order tracking belongs to the online-order flow; with orders taken on the
+  // phone there is nothing to track, so the link only appears when it works.
+  ...(ONLINE_ORDERING ? [{ href: "/track", label: "Track an order" }] : []),
   { href: "/faq", label: "Help & FAQ" },
 ];
 
@@ -114,7 +117,7 @@ export async function Footer() {
             </Link>
             <span className="flex items-center gap-2">
               <span className="h-1 w-1 rounded-full bg-signal" />
-              Payments secured by Paystack
+              Orders on {site.phone}
             </span>
           </div>
         </div>

@@ -4,11 +4,19 @@ import { checkoutSchema, priceCart } from "@/lib/checkout";
 import { initializeTransaction, paystackConfigured } from "@/lib/paystack";
 import { demoPaymentsEnabled } from "@/lib/demo-payments";
 import { orderReference } from "@/lib/utils";
+import { ONLINE_ORDERING, orderLinks } from "@/lib/commerce";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  if (!ONLINE_ORDERING) {
+    return NextResponse.json(
+      { error: `To place an order, reach out to us on ${orderLinks().phone}.` },
+      { status: 503 },
+    );
+  }
+
   let payload: unknown;
   try {
     payload = await request.json();

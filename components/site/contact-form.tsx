@@ -1,18 +1,61 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 import { submitEnquiry, type EnquiryState } from "@/app/actions/enquiry";
 import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/ui/field";
-import { services } from "@/lib/site";
+import { services, site } from "@/lib/site";
+import { DATABASE_ENABLED } from "@/lib/commerce";
 import { cn } from "@/lib/utils";
 
 const initial: EnquiryState = { status: "idle" };
 
+/**
+ * With no database to file enquiries in, the same form hands the message
+ * straight to the customer's mail client, addressed to the sales desk and
+ * already written. Nothing is silently dropped, and nothing has to be running
+ * for it to work.
+ */
+function mailtoFrom(form: HTMLFormElement) {
+  const data = new FormData(form);
+  const value = (key: string) => String(data.get(key) ?? "").trim();
+
+  const subject = value("subject") || value("service") || "Enquiry";
+  const body = [
+    `Name: ${value("name")}`,
+    `Company: ${value("company") || "—"}`,
+    `Email: ${value("email")}`,
+    `Phone: ${value("phone") || "—"}`,
+    `About: ${value("service") || "General enquiry"}`,
+    "",
+    value("message"),
+  ].join("\n");
+
+  return `mailto:${site.email}?subject=${encodeURIComponent(
+    `${subject} — ${value("name")}`,
+  )}&body=${encodeURIComponent(body)}`;
+}
+
 export function ContactForm() {
   const [state, action] = useActionState(submitEnquiry, initial);
+  const [sentByEmail, setSentByEmail] = useState(false);
+
+  if (!DATABASE_ENABLED && sentByEmail) {
+    return (
+      <div className="flex flex-col items-start gap-4 rounded-sm border border-signal/25 bg-signal-soft p-8">
+        <CheckCircle2 className="h-7 w-7 text-signal" />
+        <div>
+          <h2 className="font-display text-xl font-bold text-ink">Your message is ready</h2>
+          <p className="mt-2 max-w-md text-[0.9375rem] leading-relaxed text-ink-3">
+            We have opened it in your mail app, addressed to {site.email} — send it and we
+            reply within one working day. In a hurry? Call {site.phone}.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (state.status === "success") {
     return (
@@ -29,7 +72,19 @@ export function ContactForm() {
   }
 
   return (
-    <form action={action} className="space-y-5">
+    <form
+      action={DATABASE_ENABLED ? action : undefined}
+      onSubmit={
+        DATABASE_ENABLED
+          ? undefined
+          : (event) => {
+              event.preventDefault();
+              window.location.href = mailtoFrom(event.currentTarget);
+              setSentByEmail(true);
+            }
+      }
+      className="space-y-5"
+    >
       {state.status === "error" && (
         <div
           role="alert"

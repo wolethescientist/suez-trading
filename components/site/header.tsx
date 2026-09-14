@@ -8,6 +8,7 @@ import { Logo } from "@/components/site/logo";
 import { useCart } from "@/components/cart/cart-provider";
 import { ButtonLink } from "@/components/ui/button";
 import { navLinks, services, site } from "@/lib/site";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 import { cn } from "@/lib/utils";
 
 export function Header({ announcement }: { announcement?: string | null }) {
@@ -130,18 +131,31 @@ export function Header({ announcement }: { announcement?: string | null }) {
               {site.phone}
             </a>
 
-            <button
-              onClick={openDrawer}
-              aria-label={`Open cart, ${count} items`}
-              className="relative grid h-9 w-9 place-items-center text-fg-ink-muted transition-colors hover:text-fg-ink"
-            >
-              <ShoppingBag className="h-4.5 w-4.5" />
-              {ready && count > 0 && (
-                <span className="tnum absolute -right-0.5 -top-0.5 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-cargo px-1 font-label text-[0.5625rem] text-white">
-                  {count > 99 ? "99+" : count}
-                </span>
-              )}
-            </button>
+            {/* The bag returns with ONLINE_ORDERING. */}
+            {ONLINE_ORDERING && (
+              <button
+                onClick={openDrawer}
+                aria-label={`Open cart, ${count} items`}
+                className="relative grid h-9 w-9 place-items-center text-fg-ink-muted transition-colors hover:text-fg-ink"
+              >
+                <ShoppingBag className="h-4.5 w-4.5" />
+                {ready && count > 0 && (
+                  <span className="tnum absolute -right-0.5 -top-0.5 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-cargo px-1 font-label text-[0.5625rem] text-white">
+                    {count > 99 ? "99+" : count}
+                  </span>
+                )}
+              </button>
+            )}
+
+            {!ONLINE_ORDERING && (
+              <a
+                href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}
+                aria-label={`Call ${site.phone} to order`}
+                className="grid h-9 w-9 place-items-center text-fg-ink-muted transition-colors hover:text-cargo-lit xl:hidden"
+              >
+                <Phone className="h-4.5 w-4.5" />
+              </a>
+            )}
 
             <ButtonLink href="/contact" size="sm" className="hidden lg:inline-flex">
               Request a quote

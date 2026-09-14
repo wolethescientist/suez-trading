@@ -3,6 +3,8 @@ import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/admin/login-form";
 import { Logo } from "@/components/site/logo";
+import { DATABASE_ENABLED } from "@/lib/commerce";
+import { AdminNeedsDatabase } from "@/components/admin/needs-database";
 
 export const metadata: Metadata = { title: "Sign in" };
 export const dynamic = "force-dynamic";
@@ -12,6 +14,8 @@ export default async function LoginPage({
 }: {
   searchParams: Promise<{ error?: string }>;
 }) {
+  if (!DATABASE_ENABLED) return <AdminNeedsDatabase />;
+
   const session = await getSession();
   if (session) redirect("/admin");
   const { error } = await searchParams;

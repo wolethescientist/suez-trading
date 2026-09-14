@@ -56,7 +56,7 @@ export function Hero({
             Energy supply, haulage, construction, general and FMCG
             distribution — seven divisions across one value chain, delivered
             nationwide from Abuja. Our SRG smart gas regulator, with leak
-            detection built in, is available to order online.
+            detection built in, is in stock — reach out and we deliver.
           </p>
 
           <div className="animate-rise mt-10 flex flex-col gap-3 sm:flex-row [animation-delay:160ms]">

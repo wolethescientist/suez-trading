@@ -7,12 +7,15 @@ import { formatNaira } from "@/lib/money";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { QuantityAdd } from "@/components/shop/quantity-add";
+import { OrderEnquiry } from "@/components/shop/order-enquiry";
 import { ProductImage } from "@/components/shop/product-image";
 import { ProductCard } from "@/components/shop/product-card";
 import { SectionHeading } from "@/components/home/sections";
 import { getSettings } from "@/lib/settings";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 
-export const dynamic = "force-dynamic";
+/** Static catalogue, static page. */
+export const dynamic = "force-static";
 
 type Params = Promise<{ slug: string }>;
 
@@ -158,7 +161,10 @@ export default async function ProductPage({ params }: { params: Params }) {
           </div>
 
           <div className="mt-7">
-            {settings.ordersOpen ? (
+            {/* Reach-out ordering. The cart path below returns with ONLINE_ORDERING. */}
+            {!ONLINE_ORDERING ? (
+              <OrderEnquiry product={{ name: product.name, sku: product.sku }} />
+            ) : settings.ordersOpen ? (
               <QuantityAdd
                 outOfStock={outOfStock}
                 product={{
@@ -187,7 +193,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                 This line is out of stock. We restock regularly — tell us the quantity you
                 need and we will confirm a delivery date.
               </p>
-              <ButtonLink href="/contact" size="sm" variant="outline" className="mt-3">
+              <ButtonLink href="/contact" size="sm" variant="subtle" className="mt-3">
                 Request restock
               </ButtonLink>
             </div>
@@ -198,8 +204,10 @@ export default async function ProductPage({ params }: { params: Params }) {
               Flat {formatNaira(settings.shippingFlatRate)}, free above{" "}
               {formatNaira(settings.freeShippingThreshold)}.
             </Assurance>
-            <Assurance icon={ShieldCheck} title="Secure payment">
-              Card, transfer, USSD via Paystack.
+            <Assurance icon={ShieldCheck} title={ONLINE_ORDERING ? "Secure payment" : "Reach out to order"}>
+              {ONLINE_ORDERING
+                ? "Card, transfer, USSD via Paystack."
+                : "Call, WhatsApp or email — we confirm and deliver."}
             </Assurance>
             <Assurance icon={Package} title="Pickup available">
               Collect from our Wuse II depot.

@@ -1,11 +1,15 @@
 import "server-only";
 import { prisma } from "@/lib/db";
 import { DEFAULT_SETTINGS, type StoreSettings } from "@/lib/store-config";
+import { DATABASE_ENABLED } from "@/lib/commerce";
 
 export { DEFAULT_SETTINGS, calculateShipping } from "@/lib/store-config";
 export type { StoreSettings } from "@/lib/store-config";
 
 export async function getSettings(): Promise<StoreSettings> {
+  // No database: the defaults in lib/store-config.ts are the settings.
+  if (!DATABASE_ENABLED) return DEFAULT_SETTINGS;
+
   // Settings decorate the storefront; they are never load-bearing. If the
   // database is unreachable — a cold Neon branch, a build with no connection
   // string — fall back to defaults rather than taking the whole site down.

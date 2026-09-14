@@ -1,5 +1,4 @@
-import { prisma } from "@/lib/db";
-import { getCategories, getFeaturedProducts } from "@/lib/catalogue";
+import { getCategories, getFeaturedProducts, getProductsBySlugs } from "@/lib/catalogue";
 import { Hero } from "@/components/home/hero";
 import { Partners } from "@/components/home/partners";
 import {
@@ -15,27 +14,19 @@ import {
 import { ProductCard } from "@/components/shop/product-card";
 import { services, site } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+/** The catalogue ships with the code, so the page can be rendered once at
+ *  build time rather than on every request. */
+export const dynamic = "force-static";
+
+const FUEL_DESK = ["ago-diesel", "pms-petrol", "dpk-kerosene", "lpg-cylinder-12-5kg"];
 
 export default async function HomePage() {
   const [categories, featured, rateProducts] = await Promise.all([
     getCategories(),
     getFeaturedProducts(8),
-    // The fuel desk further down the page still quotes live off the catalogue.
-    prisma.product.findMany({
-      where: {
-        status: "ACTIVE",
-        slug: { in: ["ago-diesel", "pms-petrol", "dpk-kerosene", "lpg-cylinder-12-5kg"] },
-      },
-      select: {
-        slug: true,
-        name: true,
-        price: true,
-        unit: true,
-        stock: true,
-        trackInventory: true,
-      },
-    }),
+    // The fuel desk quotes off the catalogue; it renders only for the lines
+    // that are actually in it.
+    getProductsBySlugs(FUEL_DESK),
   ]);
 
   // The hero opens on the trade as a whole — a container terminal rather than
@@ -43,9 +34,8 @@ export default async function HomePage() {
   // grows. Fixed artwork, not a category image, because it is the front door.
   const heroImage = "/hero/suez-hero.jpg";
 
-  // Keep the fuel board in the order the trade quotes them, not whatever the
-  // database returns.
-  const rateOrder = ["ago-diesel", "pms-petrol", "dpk-kerosene", "lpg-cylinder-12-5kg"];
+  // Keep the fuel board in the order the trade quotes them.
+  const rateOrder = FUEL_DESK;
   const shortNames: Record<string, string> = {
     "ago-diesel": "AGO — Diesel",
     "pms-petrol": "PMS — Petrol",

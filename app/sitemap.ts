@@ -1,18 +1,14 @@
 import type { MetadataRoute } from "next";
-import { prisma } from "@/lib/db";
+import { getCategories, listProducts } from "@/lib/catalogue";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 import { services } from "@/lib/site";
-
-export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-  const [products, categories] = await Promise.all([
-    prisma.product.findMany({
-      where: { status: "ACTIVE" },
-      select: { slug: true, updatedAt: true },
-    }),
-    prisma.category.findMany({ where: { active: true }, select: { slug: true } }),
+  const [{ items: products }, categories] = await Promise.all([
+    listProducts({ perPage: 1000 }),
+    getCategories(),
   ]);
 
   const staticPages = [
@@ -22,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/about", priority: 0.7 },
     { path: "/contact", priority: 0.7 },
     { path: "/faq", priority: 0.5 },
-    { path: "/track", priority: 0.4 },
+    ...(ONLINE_ORDERING ? [{ path: "/track", priority: 0.4 }] : []),
     { path: "/legal/terms", priority: 0.3 },
     { path: "/legal/privacy", priority: 0.3 },
     { path: "/legal/shipping", priority: 0.4 },

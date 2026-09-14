@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { PackageSearch } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { PhoneOrdersOnly } from "@/components/shop/order-enquiry";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 import { Button } from "@/components/ui/button";
 import { Field, inputClass } from "@/components/ui/field";
 
@@ -35,6 +37,15 @@ export default async function TrackPage({
 }: {
   searchParams: Promise<{ error?: string }>;
 }) {
+  if (!ONLINE_ORDERING) {
+    return (
+      <PhoneOrdersOnly
+        title="Track an order"
+        lede="Reach out with your order details and we will tell you exactly where it is."
+      />
+    );
+  }
+
   const { error } = await searchParams;
 
   return (

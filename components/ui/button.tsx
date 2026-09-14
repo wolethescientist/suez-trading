@@ -42,6 +42,19 @@ export function Button({
   return <button className={cn(base, variants[variant], sizes[size], className)} {...props} />;
 }
 
+/**
+ * Same shape, plain `<a>` — for `tel:`, `mailto:` and `wa.me`, which are not
+ * app routes and must not go through the client router.
+ */
+export function ButtonAnchor({
+  variant = "primary",
+  size = "md",
+  className,
+  ...props
+}: CommonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return <a className={cn(base, variants[variant], sizes[size], className)} {...props} />;
+}
+
 export function ButtonLink({
   variant = "primary",
   size = "md",

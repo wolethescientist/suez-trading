@@ -3,11 +3,11 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
-  CreditCard,
   Fuel,
   HardHat,
   Leaf,
   PackageSearch,
+  Phone,
   ShoppingBasket,
   Truck,
   Warehouse,
@@ -91,7 +91,7 @@ export function SectionHeading({
 export function TrustStrip() {
   const items = [
     { icon: Warehouse, title: "Own depot & fleet", copy: "Stock we hold, moved by trucks we control." },
-    { icon: CreditCard, title: "Pay online securely", copy: "Card, bank transfer and USSD via Paystack." },
+    { icon: Phone, title: "One call to order", copy: "Price, quantity and delivery confirmed on the spot." },
     { icon: Truck, title: "Nationwide delivery", copy: "From Abuja to every state, 24–72 hours." },
     { icon: HardHat, title: "Contract supply", copy: "Scheduled replenishment for sites and plants." },
   ];
@@ -177,9 +177,9 @@ export function CategoryGrid({
     <section className="border-y border-bone-line bg-bone py-20 lg:py-28">
       <div className="container-page">
         <SectionHeading
-          eyebrow="Shop online"
-          title="Order online, pay on the spot"
-          description="Everything below is held in stock and priced live. Add to cart, pay with card, transfer or USSD, and we dispatch."
+          eyebrow="The catalogue"
+          title="In stock, priced and ready"
+          description="Everything below is held in our Abuja depot at the price shown. Reach out with what you need and we confirm quantity and delivery."
           action={{ href: "/shop", label: "Browse all products" }}
         />
 
@@ -235,18 +235,18 @@ export function HowItWorks() {
     },
     {
       n: "02",
-      title: "Pay securely",
-      copy: "Checkout with Paystack — card, bank transfer, USSD or mobile money. You get a reference immediately.",
+      title: "Reach out to order",
+      copy: "Call, WhatsApp or email the trade desk. We confirm price, quantity and a delivery window while you are on the line.",
     },
     {
       n: "03",
       title: "We pick and dispatch",
-      copy: "Payment confirms the order on our floor. Stock is allocated to you and loaded for delivery or pickup.",
+      copy: "Your order is allocated on our floor and loaded for delivery or depot pickup.",
     },
     {
       n: "04",
-      title: "Track to your door",
-      copy: "Follow the order with your reference number until it is signed for at the delivery address.",
+      title: "Delivered to your door",
+      copy: "We move it from Abuja to any state, and stay reachable on the same number until it is signed for.",
     },
   ];
 

@@ -20,12 +20,12 @@ export default async function FaqPage() {
       title: "Ordering",
       items: [
         {
-          q: "Do I need an account to order?",
-          a: "No. Add what you need to the cart, enter your contact and delivery details at checkout, and pay. Your order reference is your record — keep the confirmation email.",
+          q: "How do I place an order?",
+          a: `Reach out to the trade desk — call or WhatsApp ${site.phone}, or email ${site.email}. Tell us the line and the quantity and we confirm price, availability and a delivery window there and then. No account, no forms.`,
         },
         {
           q: "Is the stock quantity shown accurate?",
-          a: "Yes. The figure on each product page is read live from our inventory system and reflects what we are physically holding. It reduces the moment another customer's payment is confirmed.",
+          a: "The figure on each product page is what we hold in the Abuja depot. We confirm the exact quantity available when you reach out, before anything is committed.",
         },
         {
           q: "Can I order something that is not listed?",
@@ -42,19 +42,19 @@ export default async function FaqPage() {
       items: [
         {
           q: "How do I pay?",
-          a: "Through Paystack, which accepts debit and credit cards, bank transfer, USSD and mobile money. You are taken to Paystack's secure page to pay and returned here afterwards.",
+          a: "Bank transfer or card, once the desk has confirmed your order and sent you the invoice. You will always have the order in writing before you pay anything.",
         },
         {
           q: "Do you store my card details?",
-          a: "No. Card details are entered on Paystack's own pages and never reach our servers. We only see the amount, the channel used and whether the payment succeeded.",
+          a: "No. We never take card details over the phone and the site does not collect them. Payment is made to the company account on the invoice we send you.",
         },
         {
           q: "Can I pay on delivery or on account?",
-          a: "Not for online orders. Corporate customers on a supply contract can be invoiced on agreed terms — contact us to set that up.",
+          a: "Corporate customers on a supply contract can be invoiced on agreed terms — reach out to set that up. One-off orders are settled before dispatch.",
         },
         {
-          q: "My payment failed but I was debited.",
-          a: "Failed transactions are reversed automatically by the bank, usually within 24 hours. Send us your order reference and we will confirm what Paystack recorded.",
+          q: "My transfer has not shown up.",
+          a: "Bank transfers occasionally sit for a few hours. Send us the transfer reference and we will confirm the moment it lands and release the order.",
         },
       ],
     },
@@ -67,11 +67,11 @@ export default async function FaqPage() {
         },
         {
           q: "How long does delivery take?",
-          a: "Within Abuja and the FCT, usually 24 hours from payment confirmation. Elsewhere in Nigeria, typically 48 to 72 hours.",
+          a: "Within Abuja and the FCT, usually 24 hours from confirmation. Elsewhere in Nigeria, typically 48 to 72 hours.",
         },
         {
           q: "Can I collect instead?",
-          a: `Yes, collection is free from ${settings.pickupAddress}. Choose depot pickup at checkout and we will call when your order is ready.`,
+          a: `Yes, collection is free from ${settings.pickupAddress}. Say so when you order and we will call when it is ready.`,
         },
       ],
     },

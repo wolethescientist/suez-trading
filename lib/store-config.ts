@@ -19,8 +19,8 @@ export const DEFAULT_SETTINGS: StoreSettings = {
   announcement:
     "Nationwide delivery on general supplies, building materials and petroleum products.",
   announcementActive: true,
-  contactEmail: "sales@sueztrading.com",
-  contactPhone: "+234 800 000 0000",
+  contactEmail: "info@sueztrading.com",
+  contactPhone: "+234 908 007 0070",
   lowStockAlerts: true,
   ordersOpen: true,
 };

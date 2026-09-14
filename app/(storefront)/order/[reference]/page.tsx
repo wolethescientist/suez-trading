@@ -10,6 +10,8 @@ import {
   XCircle,
 } from "lucide-react";
 import { getOrderByReference } from "@/lib/orders";
+import { PhoneOrdersOnly } from "@/components/shop/order-enquiry";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 import { formatNaira } from "@/lib/money";
 import { formatDate } from "@/lib/utils";
 import { Badge, statusTone } from "@/components/ui/badge";
@@ -29,6 +31,15 @@ export default async function OrderPage({
   params: Params;
   searchParams: Search;
 }) {
+  if (!ONLINE_ORDERING) {
+    return (
+      <PhoneOrdersOnly
+        title="Your order"
+        lede="Reach out with your order details and we will read the full order back to you."
+      />
+    );
+  }
+
   const { reference } = await params;
   const { verify } = await searchParams;
   const order = await getOrderByReference(reference);

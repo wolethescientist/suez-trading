@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { prisma } from "@/lib/db";
+import { DATABASE_ENABLED, orderLinks } from "@/lib/commerce";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please tell us your name.").max(120),
@@ -39,6 +40,15 @@ export async function submitEnquiry(
     return {
       status: "error",
       message: parsed.error.issues[0]?.message ?? "Please check the form and try again.",
+    };
+  }
+
+  // With no database the contact form posts straight to email from the
+  // browser; this path only runs if something reaches the action anyway.
+  if (!DATABASE_ENABLED) {
+    return {
+      status: "error",
+      message: `Please email ${orderLinks().emailAddress} or call ${orderLinks().phone}.`,
     };
   }
 

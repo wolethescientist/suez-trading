@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { CheckoutForm } from "@/components/cart/checkout-form";
+import { PhoneOrdersOnly } from "@/components/shop/order-enquiry";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 import { getSettings } from "@/lib/settings";
 import { paystackConfigured } from "@/lib/paystack";
 import { demoPaymentsEnabled } from "@/lib/demo-payments";
@@ -9,6 +11,8 @@ export const metadata: Metadata = { title: "Checkout", robots: { index: false } 
 export const dynamic = "force-dynamic";
 
 export default async function CheckoutPage() {
+  if (!ONLINE_ORDERING) return <PhoneOrdersOnly title="Reach out to place your order" />;
+
   const settings = await getSettings();
 
   return (

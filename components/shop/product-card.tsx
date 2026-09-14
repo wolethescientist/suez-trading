@@ -2,6 +2,8 @@ import Link from "next/link";
 import { formatNaira } from "@/lib/money";
 import { Badge } from "@/components/ui/badge";
 import { AddToCartButton } from "@/components/shop/add-to-cart";
+import { OrderEnquiryCompact } from "@/components/shop/order-enquiry";
+import { ONLINE_ORDERING } from "@/lib/commerce";
 import { ProductImage } from "@/components/shop/product-image";
 import type { ProductCardData } from "@/lib/catalogue";
 
@@ -67,6 +69,9 @@ export function ProductCard({ product }: { product: ProductCardData }) {
           </div>
 
           <div className="relative z-10 mt-3">
+            {!ONLINE_ORDERING ? (
+              <OrderEnquiryCompact product={{ name: product.name, sku: product.sku }} />
+            ) : (
             <AddToCartButton
               product={{
                 productId: product.id,
@@ -82,6 +87,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
               disabled={outOfStock}
               compact
             />
+            )}
           </div>
         </div>
       </div>
